@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 25% 97%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --primary: 205 90% 42%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 20% 93%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 20% 93%;
+    --muted-foreground: 215.4 16.3% 44%;
+    --accent: 210 25% 91%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 25% 88%;
+    --input: 214.3 25% 88%;
+    --ring: 205 90% 42%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222 24% 9%;
+    --foreground: 210 40% 96%;
+    --card: 222 22% 12%;
+    --card-foreground: 210 40% 96%;
+    --primary: 199 95% 60%;
+    --primary-foreground: 222 47% 10%;
+    --secondary: 220 18% 17%;
+    --secondary-foreground: 210 40% 96%;
+    --muted: 220 18% 16%;
+    --muted-foreground: 215 16% 62%;
+    --accent: 220 18% 19%;
+    --accent-foreground: 210 40% 96%;
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 18% 20%;
+    --input: 220 18% 20%;
+    --ring: 199 95% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Segoe UI Variable Text", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+/* Custom Windows 11 subtle scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.45);
+}
