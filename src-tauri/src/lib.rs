@@ -1,6 +1,17 @@
+pub mod commands;
+pub mod formatter;
+pub mod journal;
+pub mod models;
 pub mod parser;
 pub mod renamer;
+pub mod scanner;
+pub mod validator;
 
+use commands::{
+    execute_rename_plan_v2, get_journal_history_v2, parse_preview_v2,
+    recover_incomplete_batches_v2, scan_folder_v2, scan_paths_v2, undo_batch_v2,
+    validate_rename_plan_v2,
+};
 use parser::{parse_filename, ParsedFilename};
 use renamer::{
     execute_batch_rename, scan_directory, undo_batch_rename, validate_rename_plan,
@@ -102,15 +113,14 @@ fn create_sample_sandbox() -> Result<String, String> {
 
     let sample_files = [
         "Trigger.S01E01.x265.720p.WEB-EDITH.mkv",
-        "Trigger.S01E02.x265.720p.WEB-EDITH.mkv",
-        "Trigger.S01E03.x265.720p.WEB-EDITH.mkv",
-        "Trigger.S01E04.x265.720p.WEB-EDITH.mkv",
-        "Trigger.S01E06.1080p.WEB-DL.DDP5.1.H.264-NTb.mkv",
+        "Trigger.S01E02.x265.720p.jshbsdkh-webrip.mkv",
+        "Trigger.S01_E03.x265.720p.wefi-helman.mkv",
+        "Trigger.S01.E10.x265.720p-WEB-randomvideo.mkv",
         "Severance_s1e01_2160p_ATVP_WEB-DL_DV_HDR_HEVC.mkv",
-        "Severance.1x02.Half.Loop.1080p.WEBRip.x265-RARBG.mp4",
-        "The.Bear.Season.2.Episode.07.Forks.1080p.HULU.WEB-DL.mkv",
-        "Mystery_Clip_Ep05_720p.mkv",
-        "Behind_The_Scenes_Featurette.mp4",
+        "Trigger.1x03.HDTV.avi",
+        "My.Show.S02E107.WEBRip.MKV",
+        "Show.S01E01.S02E05.mkv",
+        "filename_without_episode.mkv",
     ];
 
     for name in &sample_files {
@@ -130,6 +140,14 @@ pub fn run() {
         .manage(AppState::default())
         .invoke_handler(tauri::generate_handler![
             scan_folder,
+            scan_folder_v2,
+            scan_paths_v2,
+            parse_preview_v2,
+            validate_rename_plan_v2,
+            execute_rename_plan_v2,
+            undo_batch_v2,
+            get_journal_history_v2,
+            recover_incomplete_batches_v2,
             parse_single_filename,
             validate_batch,
             rename_files_batch,

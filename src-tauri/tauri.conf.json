@@ -28,7 +28,10 @@
   },
   "bundle": {
     "active": true,
-    "targets": "all",
+    "targets": ["nsis", "msi"],
+    "publisher": "Renamee Desktop Tools",
+    "shortDescription": "Offline Smart Bulk TV Episode & Media File Renamer for Windows",
+    "category": "Utility",
     "icon": [
       "icons/icon.ico",
       "icons/icon.png"
